@@ -1,0 +1,17 @@
+#Option 1:
+
+# Option 2: Nasa Weather PLot 
+# install.packages("nasaweather")
+library(nasaweather)
+library(ggplot2)
+head(atmos)
+#Note: The annual range on this dataset is 1995 to 2000.  The year 2001 doesn't contain any observations.  Variable names were modified to reflect the correct data.
+jan2000 <- subset(atmos, year == 2000 & month == 1)
+head(jan2000)
+ggplot(jan2000, aes(x = long, y = lat)) + 
+  geom_tile(aes(fill = temp))  
+ 
+  
+# Option 3:
+
+# Option 4:s
