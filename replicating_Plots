@@ -1,6 +1,6 @@
 #Option 1:
 
-# Option 2: Nasa Weather PLot 
+# Option 2: Nasa Weather Plot 
 # install.packages("nasaweather")
 library(nasaweather)
 library(ggplot2)
