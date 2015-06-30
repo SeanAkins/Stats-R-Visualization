@@ -36,7 +36,11 @@ head(avg_Strikeout_Annual)
 head(teams_Strikeout_Data)
 
 #Plot of annual team strikeout data
-ggplot() +
+ggplot()+
   geom_point(aes(x = teams_Strikeout_Data$yearID, y = teams_Strikeout_Data$strikeouts_per_game), colour = "grey") + 
-  geom_line(aes(x = avg_Strikeout_Annual$yearID, y = avg_Strikeout_Annual$avg_Strikeout), colour = "deepskyblue3", size = 0.75)
+  geom_point(aes(x = avg_Strikeout_Annual$yearID, y = avg_Strikeout_Annual$avg_Strikeout), colour = "deepskyblue4", size = 3) +
+  geom_line(aes(x = avg_Strikeout_Annual$yearID, y = avg_Strikeout_Annual$avg_Strikeout), colour = "deepskyblue4", size = 0.75) + 
+  theme(axis.text.x = element_text(colour = "black"), axis.text.y = element_text(colour = "grey")) + 
+  theme(panel.border=element_blank(), axis.line=element_line(), axis.line.y=element_blank())
+
 
