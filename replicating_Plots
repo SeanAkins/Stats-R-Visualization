@@ -18,6 +18,7 @@ ggplot(jan2000, aes(x = long, y = lat)) +
 #install.packages("Lahman")
 library(Lahman)
 library(dplyr)
+library(ggplot2)
 ??Lahman
 # Teams: Yearly Stats and standings
 head(Teams)
@@ -32,9 +33,10 @@ avg_Strikeout_Annual <- teams_Strikeout_Data %>%
   summarise(avg_Strikeout = mean(strikeouts_per_game))
 
 head(avg_Strikeout_Annual)
+head(teams_Strikeout_Data)
 
-ggplot(avg_Strikeout_Annual) +
-  geom_point(aes(x = yearID, y = avg_Strikeout))
-
-  
+#Plot of annual team strikeout data
+ggplot() +
+  geom_point(aes(x = teams_Strikeout_Data$yearID, y = teams_Strikeout_Data$strikeouts_per_game), colour = "grey") + 
+  geom_line(aes(x = avg_Strikeout_Annual$yearID, y = avg_Strikeout_Annual$avg_Strikeout), colour = "deepskyblue3", size = 0.75)
 
