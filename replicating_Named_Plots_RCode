@@ -1,0 +1,96 @@
+library("ggplot2")
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = price))
+
+#1 
+head(diamonds)
+str(diamonds)
+?diamonds
+
+ggplot(diamonds) +
+  geom_point(aes(x = cut, y = price))
+
+
+#2 
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = price))
+
+ggplot(diamonds) +
+  geom_point(aes(x = color, y = price))
+
+# The carat data is numerical integers based upon the carat of the diamonds, the data points are spread continously across the x-axis.
+# The color data is discrete and binned based upon diamond grades D, E, F, ...., J, so that when the x-axis is displayed it plots the correctly binned diamond value against the price. 
+
+#3
+
+#Plot of the continous carat value on the x-axis, price on the y-axis, and the color as a discrete colour mapping.
+ggplot(diamonds) +
+  geom_point(aes(x = carat, y = price, colour=color))
+
+#Gradient Mapping of Binned grades on the x-axis, price on the y-axis, and carats as the colour gradient. 
+ggplot(diamonds) +
+  geom_point(aes(x = color, y = price, colour=carat))
+
+#Description: 
+ 
+
+#Added alpha, size, and shape:
+
+  
+#4 
+#Summation stacked bar charts with the cut binned by  price as the x-axis, and the number of stones binned on the y-axis.
+ggplot(diamonds) + 
+  geom_bar(aes(x = price, colour = cut), position="stack")
+
+# Normalized / filled bar chart distributions arranged by grad of cut distributions.  The Number of stones binned on the x-axis, and the price binned on the y-axis. 
+ggplot(diamonds) + 
+  geom_bar(aes(x = price, colour = cut), position="fill")
+
+# Non-stacked bar chart binneng each grade of cut by cost on the x-axis, and the count of each cut on the y-axis.  This bar cart shows the non-summation values of each stone per price. 
+ggplot(diamonds) + 
+  geom_bar(aes(x = price, colour = cut), position="dodge")
+
+# Non-summation binned bar chart of each diamend cut, sepecated by diamond color on the x-axis, and the number of diamonds per cut and color on the y-axis. 
+ggplot(diamonds) + 
+  geom_bar(aes(x = color, colour = cut), position="dodge")
+
+#5
+# Stacked bar charts of each cut (x-axis) against the approximate quantity of each cut (y-axis).  The summation of diamond clarity values is represented by each stacked bar, and each color represents a different diamond clarity grade.  
+ggplot(diamonds, aes(x=cut, fill=clarity)) +
+  geom_bar()
+
+# Non-stacked bar charts of each cut (x-axis) against the approximate quantity of each cut (y-axis).  Each value of diamond clarity is represented by a non-stacked bar chart. 
+ggplot(diamonds, aes(x=cut, fill=clarity)) +
+  geom_bar(position = "dodge")
+
+# Stacked, and normalized bar charts of each cut (x-axis) against the approximate quantity of each cut (y-axis).  The normalized distribution of each diamond clarity value is represented by each stacked bar, and each color represents a different diamond clarity grade.  
+ggplot(diamonds, aes(x=cut, fill=clarity)) +
+  geom_bar(position = "fill")
+
+#6 
+# Initial bar chart using the discrete cut value. 
+ggplot(diamonds) + 
+  geom_bar(aes(x = cut))
+
+# Modified bar chart using the continous carat value.  
+ggplot(diamonds) + 
+  geom_bar(aes(x = carat))
+
+#Next Section (Movies):
+head(movies)
+library(dplyr)
+library(ggplot2)
+    
+movies_year_grouping <- group_by(movies, year, Action)
+movies_sum <- summarise(movies_year_grouping, n_movies = n())
+
+# Plots a trendline of the number of non-action, and action movies depedent upon the year. The movies_sum$Action is a boolean value of whether the movie count in the n_movies is an action movie or not.    
+ggplot(movies_sum, aes(x = year)) +
+  geom_line(aes(y = n_movies, colour = factor(Action)))
+
+#7 
+ggplot(movies_sum, aes(x=year)) + 
+  geom_point(aes(y = n_movies))
+
+# Transitioning from geom_line to geom_point roemoves the trendline and maps the number of action movies againstthe number of non-action movies produced each year. The geom_line dataset differintiated which trendlines represented which grouping of acion or non-action movies, which makes differentiating between the two easy.  The geom_point plot maps both datasets as a set of black dots, which makes differentiating between the non-action and action datapoints more difficult. 
+
