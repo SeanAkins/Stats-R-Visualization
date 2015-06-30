@@ -14,4 +14,27 @@ ggplot(jan2000, aes(x = long, y = lat)) +
   
 # Option 3:
 
-# Option 4:s
+# Option 4: (Replicated Script): 
+#install.packages("Lahman")
+library(Lahman)
+library(dplyr)
+??Lahman
+# Teams: Yearly Stats and standings
+head(Teams)
+teams_Strikeout_Data <- select(Teams, yearID, name, G, SO) %>%
+mutate(strikeouts_per_game = SO/G) 
+#mutate() concantenates new columns to the existing data set.  dplyr data package
+# %>% is a re-ordering operator in dplyr
+head(teams_Strikeout_Data)
+
+avg_Strikeout_Annual <- teams_Strikeout_Data %>%
+  group_by(yearID) %>%
+  summarise(avg_Strikeout = mean(strikeouts_per_game))
+
+head(avg_Strikeout_Annual)
+
+ggplot(avg_Strikeout_Annual) +
+  geom_point(aes(x = yearID, y = avg_Strikeout))
+
+  
+
