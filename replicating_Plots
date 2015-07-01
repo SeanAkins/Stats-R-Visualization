@@ -14,32 +14,22 @@ ggplot(jan2000, aes(x = long, y = lat)) +
   
 # Option 3:
 
-# Option 4: (Replicated Script): 
-#install.packages("Lahman")
-library(Lahman)
-library(dplyr)
-library(ggplot2)
-??Lahman
-# Teams: Yearly Stats and standings
-head(Teams)
-teams_Strikeout_Data <- select(Teams, yearID, name, G, SO) %>%
-mutate(strikeouts_per_game = SO/G) 
-#mutate() concantenates new columns to the existing data set.  dplyr data package
-# %>% is a re-ordering operator in dplyr
-head(teams_Strikeout_Data)
 
-avg_Strikeout_Annual <- teams_Strikeout_Data %>%
+so_by_team <- select(Teams, yearID, name, G, SO) %>%
+  mutate(strikeouts_per_game = SO/G) 
+
+avg_so_by_year  <- so_by_team %>% 
   group_by(yearID) %>%
-  summarise(avg_Strikeout = mean(strikeouts_per_game))
+  summarise(avg_so = mean(strikeouts_per_game))
 
-head(avg_Strikeout_Annual)
-head(teams_Strikeout_Data)
+head(avg_so_by_year)
+head(so_by_team)
 
 #Plot of annual team strikeout data
 ggplot()+
-  geom_point(aes(x = teams_Strikeout_Data$yearID, y = teams_Strikeout_Data$strikeouts_per_game), colour = "grey") + 
-  geom_point(aes(x = avg_Strikeout_Annual$yearID, y = avg_Strikeout_Annual$avg_Strikeout), colour = "deepskyblue4", size = 3) +
-  geom_line(aes(x = avg_Strikeout_Annual$yearID, y = avg_Strikeout_Annual$avg_Strikeout), colour = "deepskyblue4", size = 0.75) + 
+  geom_point(aes(x = so_by_team$yearID, y = so_by_team$strikeouts_per_game), colour = "grey") + 
+  geom_point(aes(x = avg_so_by_year$yearID, y = avg_so_by_year$avg_so), colour = "deepskyblue4", size = 3) +
+  geom_line(aes(x = avg_so_by_year$yearID, y = avg_so_by_year$avg_so), colour = "deepskyblue4", size = 0.75) + 
   theme(axis.text.x = element_text(colour = "black"), axis.text.y = element_text(colour = "grey")) + 
   theme(panel.border=element_blank(), axis.line=element_line(), axis.line.y=element_blank())
 
