@@ -43,4 +43,15 @@ ggplot()+
   theme(axis.text.x = element_text(colour = "black"), axis.text.y = element_text(colour = "grey")) + 
   theme(panel.border=element_blank(), axis.line=element_line(), axis.line.y=element_blank())
 
-
+#Kiumars/Option 4
+ggplot(so_by_team,aes(yearID,strikeouts_per_game))+
+  geom_point (color="grey")+
+  stat_summary(fun.y = 'mean', geom =c("point"), colour = "deepskyblue4") +
+  stat_summary(fun.y = 'mean', geom =c("line"), colour = "deepskyblue4") +
+  annotate("text", x = 2010, y = 8.7, label = "2012\nLeage average", size=5)+
+  annotate("text", x = 2010, y = 8, label = "7.5", size=8)+
+  annotate("text", x = 1924, y = 1.5, label = "Leage average\n1924", size=5)+
+  annotate("text", x = 1924, y = 2.2, label = "2.5", size=8)+
+  scale_x_continuous(breaks=c(1900,1910,1920,1930,1940,1950,1960,1970,1980,1990,2000,2010),limits=c(1900,2015))+
+  scale_y_continuous(breaks=c(0,1,2,3,4,5,6,7,8,9),limits=c(0,9))+
+  labs(x="",y="")
