@@ -31,7 +31,8 @@ ggplot()+
   geom_point(aes(x = avg_so_by_year$yearID, y = avg_so_by_year$avg_so), colour = "deepskyblue4", size = 3) +
   geom_line(aes(x = avg_so_by_year$yearID, y = avg_so_by_year$avg_so), colour = "deepskyblue4", size = 0.75) + 
   theme(axis.text.x = element_text(colour = "black"), axis.text.y = element_text(colour = "grey")) + 
-  theme(panel.border=element_blank(), axis.line=element_line(), axis.line.y=element_blank())
+  theme(panel.border=element_blank(), axis.line=element_line(), axis.line.y=element_blank()) + 
+  theme_bw()
 
 #Kiumars/Option 4
 ggplot(so_by_team,aes(yearID,strikeouts_per_game))+
