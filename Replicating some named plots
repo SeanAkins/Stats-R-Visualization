@@ -1,0 +1,36 @@
+Replicating some named plots
+Module 2 worksheet
+
+Question1:
+
+Variable Type      	 Variable Name
+Numeric	             Carat, depth, table, price, x, y, z
+Ordered factor	     Cut, color, clarity
+
+Question2:
+
+The difference is due to the type of the explanatory variables. The carat is a continuous variable and the plot looks like an integrated one while using the color variable the graph looks broken to different categories of the color variable. 
+
+Question3:
+
+Assigning cut to color aesthetic results in a group of different colors since cut is a categorical variable while using carat as a color aesthetic results in the spectra of a single color. 
+
+Question4:
+
+Adding the clarity as the fill aesthetic is actually using colors to define what proportion of each diamond cut has a specific clarity.
+
+Question5:
+
+The fill position is a normalized plot of the bar chart that we just produced and the dodge position looks like a couple of bar charts for clarity variable within the cut variable.
+
+Question6:
+
+Histogram, which is the equivalent of bar chart for continuous variables.
+
+Question7:
+
+The new plot looks like a wiggly one since we removed a categorizing variable (color) and the geom_line tries to connect all the points together.
+
+
+
+
